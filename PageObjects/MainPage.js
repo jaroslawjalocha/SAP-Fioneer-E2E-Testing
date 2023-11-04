@@ -24,10 +24,21 @@ class MainPage extends Page {
     get linkResources() {
         return $('//a[contains(@class, "nav-top-link") and contains(text(), "Resources")]');
     }
-
+    get linkFinancialControl() {
+        return $('//span[normalize-space()="Financial Control"]');
+    }
+    async hoverFinanceAndEsg() {
+        await this.linkFinanceAndEsg.moveTo();
+        // Możesz potrzebować dodatkowej logiki, aby poczekać na pojawienie się opcji po najechaniu myszą
+      }
+      async clickFinancialControl() {
+        await this.linkFinancialControl.click();
+        // Możesz potrzebować dodatkowej logiki, aby poczekać na pojawienie się opcji po najechaniu myszą
+      }
     open() {
         return super.open('');
     }
+
 }
 
 module.exports = new MainPage();

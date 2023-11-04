@@ -2,7 +2,8 @@ exports.config = {
     runner: 'local',
 
     specs: [
-        './Tests/homePageBookmarksVisibilityTest.js'
+        './Tests/financialControlTest.js',
+       './Tests/homePageBookmarksVisibilityTest.js'
     ],
 
     exclude: [
