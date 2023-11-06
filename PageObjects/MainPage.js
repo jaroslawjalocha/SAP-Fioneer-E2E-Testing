@@ -2,39 +2,59 @@ const { $ } = require('@wdio/globals')
 const Page = require('./Page');
 
 class MainPage extends Page {
-
+    // Define selectors using getter methods
     get linkBanking() {
-        return $('//a[contains(@class, "nav-top-link") and contains(text(), "Banking")]');
+        return $('#menu-item-29961');
     }
     get linkInsurance() {
-        return $('//a[contains(@class, "nav-top-link") and contains(text(), "Insurance")]');
+        return $('#menu-item-29972');
     }
     get linkFinanceAndEsg() {
-        return $('//a[contains(@class, "nav-top-link") and contains(text(), "Finance & ESG")]');
+        return $('#menu-item-29979');
     }
     get linkServices() {
-        return $('//a[contains(@class, "nav-top-link") and contains(text(), "Services")]');
+        return $('#menu-item-29985');
     }
     get linkPartners() {
-        return $('//a[contains(@class, "nav-top-link") and contains(text(), "Partners")]');
+        return $('#menu-item-26');
     }
     get linkCompany() {
-        return $('//a[contains(@class, "nav-top-link") and contains(text(), "Company")]');
+        return $('#menu-item-26834');
     }
     get linkResources() {
-        return $('//a[contains(@class, "nav-top-link") and contains(text(), "Resources")]');
+        return $('#menu-item-26831');
     }
     get linkFinancialControl() {
         return $('//span[normalize-space()="Financial Control"]');
     }
+    get buttonGetInTouch() {
+        return $('=Get in touch');
+    }
+    // Methods to interact with elements
     async hoverFinanceAndEsg() {
         await this.linkFinanceAndEsg.moveTo();
-        // Możesz potrzebować dodatkowej logiki, aby poczekać na pojawienie się opcji po najechaniu myszą
-      }
-      async clickFinancialControl() {
+    }
+    async clickGetInTouch() {
+        await this.buttonGetInTouch.click();
+    }
+    async waitForLinkBankingDisplayed() {
+        await this.linkBanking.waitForDisplayed({
+            timeout: 5000,
+            timeoutMsg: 'Banking tab is not displayed after 5s'
+        });
+    }
+    async clickFinancialControl() {
+        await this.linkFinancialControl.waitForDisplayed({
+            timeout: 5000,
+            timeoutMsg: 'The Financial Control link is not displayed after 5 seconds'
+        });
+        await this.linkFinancialControl.waitForClickable({
+            timeout: 5000,
+            timeoutMsg: 'The Financial Control link is not clickable after 5 seconds'
+        });
         await this.linkFinancialControl.click();
-        // Możesz potrzebować dodatkowej logiki, aby poczekać na pojawienie się opcji po najechaniu myszą
-      }
+    }
+    // Open the main page
     open() {
         return super.open('');
     }
