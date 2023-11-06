@@ -52,18 +52,10 @@ exports.config = {
         }
     },
     after: async function (exitCode, config, capabilities, results) {
-        // Zamknięcie wszystkich okien przeglądarki po zakończeniu każdego pliku testowego
         const allWindows = await browser.getWindowHandles();
         for (const window of allWindows) {
             await browser.switchToWindow(window);
             await browser.closeWindow();
         }
-    },
-
-    onPrepare: function (config, capabilities) {
-
-    },
-    onComplete: function (exitCode, config, capabilities, results) {
-
     },
 }
